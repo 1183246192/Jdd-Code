@@ -1,2 +1,2 @@
 # Jdd-Code
-Common Java code and utils
+This is a previous test project
