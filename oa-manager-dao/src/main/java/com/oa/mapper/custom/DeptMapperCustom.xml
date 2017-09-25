@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oa.mapper.custom.DeptMapperCustom">
+
+	
+	<!-- SELECT * FROM `user` WHERE `username` LIKE '%小%' LIMIT 0, 100 -->
+	<!-- 查询列表的总记录数 -->
+	<select id="findDeptQueryVoList" parameterType="com.oa.pojo.Department"
+		resultType="com.oa.vo.DeptQueryVo">
+		SELECT 
+		d.id, 
+		d.`name`, 
+		d.description, 
+		d.`status`, 
+		d.createdate, 
+		u.username leader
+		from department d
+		LEFT JOIN `user` u
+		ON d.id = u.did 
+		WHERE u.isleader = 1
+	</select>
+
+	<select id="findUserByDid" parameterType="java.lang.Integer" resultType="com.oa.pojo.User">
+		SELECT
+		id,
+		did,
+		username,
+		isleader
+		FROM `user`
+		WHERE
+		`did` = #{did}
+	</select>
+	
+</mapper>

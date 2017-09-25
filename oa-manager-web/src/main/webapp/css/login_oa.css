@@ -1,0 +1,155 @@
+/*初始化页面*/ 
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+
+body { 
+	background:#3987cf; 
+} 
+
+.bg{
+	overflow: hidden;
+	margin: 0 auto;
+	width: 880px;
+	height: 640px; 
+	background: #3987cf;
+	/* border: 1px solid #f00; */
+}
+
+.login_bg{
+	margin-top: 100px;
+	width: 880px;
+	height: 540px;
+	background: url(../images/bg.png) no-repeat center center;
+	/*border: 1px solid #f00; */
+}
+
+.login_box{
+	width: 300px;
+	height: 240px;
+	padding-top: 150px;
+	padding-left: 420px;
+	/*margin-top:180px;*/
+	/*margin-left:420px;*/
+	/* border: 1px solid #f00; */
+}
+
+.loginerr_msg{
+	width: 230px;
+	height: 28px;
+	margin-top: 40px;
+	margin-left: 20px;
+	text-align: center;
+	/* border: 1px solid #f00; */
+}
+
+.error_msg{
+	line-height: 28px;
+	font-family: "宋体";
+	color: #f00;
+	font-size: 13px;
+}
+
+.name_box{
+	float: left;
+	width: 260px;
+	height: 30px;
+	margin-top: 5px;
+	margin-left: 20px;
+	/* border: 1px solid #f00; */
+}
+
+.pass_box{
+	float: left;
+	width: 260px;
+	height: 30px;
+	margin-top: 10px;
+	/*margin-left: 20px;*/
+}
+
+.auth_box{
+	float: left;
+	width: 260px;
+	height: 30px;
+	margin-top: 10px;
+	/*margin-left: 20px;*/
+	/*border: 1px solid #f00; */
+}
+
+.login_name{
+	display: block;
+	width: 47px;
+	height: 28px;
+	/*line-height: 28px;*/
+	background: url(../images/name.png) no-repeat left center;
+	/*border: 1px solid #f00;*/
+}
+
+.login_input{
+	margin-left: 60px;
+	width: 180px;
+	height: 28px;
+	border: 1px solid #3987cf;
+	padding: 0px 3px 0 3px;
+	border-radius:2px;
+}
+
+.login_auinput{
+	margin-left: 60px;
+	width: 90px;
+	height: 28px;
+	border: 1px solid #3987cf;
+	padding: 0px 3px 0 3px;
+	border-radius:2px;
+}
+
+.login_pass{
+	display: block;
+	margin-left: 20px;
+	width: 47px;
+	height: 28px;
+	/*line-height: 28px;*/
+	background: url(../images/pass.png) no-repeat left center;
+}
+
+.login_auth{
+	float: left;
+	display: block;
+	margin-left: 20px;
+	width: 47px;
+	height: 28px;
+	/*line-height: 28px;*/
+	background: url(../images/auth.png) no-repeat left center;
+}
+
+.login_submit{
+	width: 240px;
+	height: 28px;
+	background-color: #3987cf;
+	border:1px solid #3987cf;
+	border-radius:4px;
+	margin-top: 140px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.login_submit span{
+	width: 240px;
+	height: 28px;
+	display: block;
+	word-spacing: 10px;
+	text-align: center;
+	line-height: 27px;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	color: #fff;
+	font-size: 18px;
+	word-spacing: 15px; 
+	letter-spacing: 15px;
+}
+
+.authImg{
+	width: 80px;
+	height: 28px;
+	display: block;
+	float: right;
+	cursor: pointer;
+}

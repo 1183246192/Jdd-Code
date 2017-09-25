@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 包扫描器，扫描带@Service注解的类 -->
+	<context:component-scan base-package="com.oa.service"></context:component-scan>
+	
+	<!-- 任务调度job类 -->
+	<!-- <bean id="quartzDelFileExecute" class="com.oa.web.utils.QuartzDelFileExecute" />
+	<bean id="insertVacationExecute" class="com.oa.web.utils.InsertVacationExecute" /> -->
+
+	<!-- 定义定时执行 这个bean中的execute()方法 -->
+	<!-- <bean id="jobDetailFactoryBean1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="quartzDelFileExecute" />
+		</property>
+		<property name="targetMethod">
+			<value>execute</value>
+		</property>
+	</bean>
+	<bean id="jobDetailFactoryBean2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="insertVacationExecute" />
+		</property>
+		<property name="targetMethod">
+			<value>execute</value>
+		</property>
+	</bean> -->
+
+	<!-- 触发器的bean的设置，要触发的jobDetail是jobDetailFactoryBean -->
+	<!-- <bean id="springTriggerFactoryBean1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="jobDetailFactoryBean1" />
+		</property>
+		<property name="cronExpression">
+			<value>0/5 * * * * ?</value>  每5秒运行一次
+			每周日23：59：59运行一次
+			<value>59 59 23 ? * SUN *</value>
+		</property>
+	</bean>
+	<bean id="springTriggerFactoryBean2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="jobDetailFactoryBean2" />
+		</property>
+		<property name="cronExpression">
+			<value>0 54/10 * * * ? *</value>
+			每年的01-01 06：59：59运行一次
+			<value>59 59 6 1 1 ? *</value>
+		</property>
+	</bean> -->
+
+	<!-- 管理触发器的总设置,管理我们的触发器列表,可以在bean的list中放置多个触发器。 -->
+	<!-- <bean id="springSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+			   <ref bean="springTriggerFactoryBean1" />
+			   <ref bean="springTriggerFactoryBean2" />
+			</list>
+		</property>
+	</bean> -->
+	
+</beans>

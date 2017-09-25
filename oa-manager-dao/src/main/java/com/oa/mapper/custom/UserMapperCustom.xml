@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oa.mapper.custom.UserMapperCustom">
+
+	
+	<!-- 查询用户是否存在  -->
+	<select id="findUserByName" parameterType="java.lang.String"
+		resultType="com.oa.pojo.User">
+		SELECT
+		id,
+		username
+		FROM `user`
+		WHERE
+		`username` = #{username}
+	</select>
+	
+	<select id="findUserById" parameterType="java.lang.Integer"
+		resultType="com.oa.pojo.User">
+		SELECT
+		id,
+		did,
+		username,
+		isleader
+		FROM `user`
+		WHERE
+		`id` = #{id}
+	</select>
+	
+	<select id="findDeptNameById" parameterType="java.lang.Integer"
+		resultType="com.oa.pojo.Department">
+		SELECT d.`name`
+		FROM department d
+		LEFT JOIN `user` u
+		ON d.id = u.did
+		WHERE u.id = #{id}
+	</select>
+	
+	<select id="findUseridByName" parameterType="java.lang.String"
+		resultType="com.oa.pojo.User">
+		SELECT
+			u.id
+		FROM
+			`user` u
+		WHERE
+			`username` LIKE "%"#{username}"%"
+	</select>
+	
+	<select id="findUseridByDeptid" parameterType="java.lang.Integer"
+		resultType="com.oa.pojo.User">
+		SELECT
+			u.id
+		FROM
+			`user` u
+		WHERE u.did = #{did}
+	</select>
+
+</mapper>

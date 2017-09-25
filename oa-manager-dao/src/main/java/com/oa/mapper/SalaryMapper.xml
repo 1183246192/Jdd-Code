@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oa.mapper.SalaryMapper" >
+  <resultMap id="BaseResultMap" type="com.oa.pojo.Salary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="basicsalary" property="basicsalary" jdbcType="REAL" />
+    <result column="Fsalary" property="fsalary" jdbcType="REAL" />
+    <result column="checkingdays" property="checkingdays" jdbcType="INTEGER" />
+    <result column="trafficallowance" property="trafficallowance" jdbcType="REAL" />
+    <result column="otherallowance" property="otherallowance" jdbcType="REAL" />
+    <result column="totalallowance" property="totalallowance" jdbcType="REAL" />
+    <result column="endowmentinsurance" property="endowmentinsurance" jdbcType="REAL" />
+    <result column="medicalinsurance" property="medicalinsurance" jdbcType="REAL" />
+    <result column="unemploymentinsurance" property="unemploymentinsurance" jdbcType="REAL" />
+    <result column="employmentinjuryinsurance" property="employmentinjuryinsurance" jdbcType="REAL" />
+    <result column="maternityinsurance" property="maternityinsurance" jdbcType="REAL" />
+    <result column="housingfund" property="housingfund" jdbcType="REAL" />
+    <result column="othersdeduct" property="othersdeduct" jdbcType="REAL" />
+    <result column="totaldeduct" property="totaldeduct" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userid, month, basicsalary, Fsalary, checkingdays, trafficallowance, otherallowance, 
+    totalallowance, endowmentinsurance, medicalinsurance, unemploymentinsurance, employmentinjuryinsurance, 
+    maternityinsurance, housingfund, othersdeduct, totaldeduct
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.oa.pojo.SalaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from salary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from salary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from salary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oa.pojo.SalaryExample" >
+    delete from salary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oa.pojo.Salary" >
+    insert into salary (id, userid, month, 
+      basicsalary, Fsalary, checkingdays, 
+      trafficallowance, otherallowance, totalallowance, 
+      endowmentinsurance, medicalinsurance, unemploymentinsurance, 
+      employmentinjuryinsurance, maternityinsurance, 
+      housingfund, othersdeduct, totaldeduct
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{month,jdbcType=VARCHAR}, 
+      #{basicsalary,jdbcType=REAL}, #{fsalary,jdbcType=REAL}, #{checkingdays,jdbcType=INTEGER}, 
+      #{trafficallowance,jdbcType=REAL}, #{otherallowance,jdbcType=REAL}, #{totalallowance,jdbcType=REAL}, 
+      #{endowmentinsurance,jdbcType=REAL}, #{medicalinsurance,jdbcType=REAL}, #{unemploymentinsurance,jdbcType=REAL}, 
+      #{employmentinjuryinsurance,jdbcType=REAL}, #{maternityinsurance,jdbcType=REAL}, 
+      #{housingfund,jdbcType=REAL}, #{othersdeduct,jdbcType=REAL}, #{totaldeduct,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.oa.pojo.Salary" >
+    insert into salary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="basicsalary != null" >
+        basicsalary,
+      </if>
+      <if test="fsalary != null" >
+        Fsalary,
+      </if>
+      <if test="checkingdays != null" >
+        checkingdays,
+      </if>
+      <if test="trafficallowance != null" >
+        trafficallowance,
+      </if>
+      <if test="otherallowance != null" >
+        otherallowance,
+      </if>
+      <if test="totalallowance != null" >
+        totalallowance,
+      </if>
+      <if test="endowmentinsurance != null" >
+        endowmentinsurance,
+      </if>
+      <if test="medicalinsurance != null" >
+        medicalinsurance,
+      </if>
+      <if test="unemploymentinsurance != null" >
+        unemploymentinsurance,
+      </if>
+      <if test="employmentinjuryinsurance != null" >
+        employmentinjuryinsurance,
+      </if>
+      <if test="maternityinsurance != null" >
+        maternityinsurance,
+      </if>
+      <if test="housingfund != null" >
+        housingfund,
+      </if>
+      <if test="othersdeduct != null" >
+        othersdeduct,
+      </if>
+      <if test="totaldeduct != null" >
+        totaldeduct,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsalary != null" >
+        #{basicsalary,jdbcType=REAL},
+      </if>
+      <if test="fsalary != null" >
+        #{fsalary,jdbcType=REAL},
+      </if>
+      <if test="checkingdays != null" >
+        #{checkingdays,jdbcType=INTEGER},
+      </if>
+      <if test="trafficallowance != null" >
+        #{trafficallowance,jdbcType=REAL},
+      </if>
+      <if test="otherallowance != null" >
+        #{otherallowance,jdbcType=REAL},
+      </if>
+      <if test="totalallowance != null" >
+        #{totalallowance,jdbcType=REAL},
+      </if>
+      <if test="endowmentinsurance != null" >
+        #{endowmentinsurance,jdbcType=REAL},
+      </if>
+      <if test="medicalinsurance != null" >
+        #{medicalinsurance,jdbcType=REAL},
+      </if>
+      <if test="unemploymentinsurance != null" >
+        #{unemploymentinsurance,jdbcType=REAL},
+      </if>
+      <if test="employmentinjuryinsurance != null" >
+        #{employmentinjuryinsurance,jdbcType=REAL},
+      </if>
+      <if test="maternityinsurance != null" >
+        #{maternityinsurance,jdbcType=REAL},
+      </if>
+      <if test="housingfund != null" >
+        #{housingfund,jdbcType=REAL},
+      </if>
+      <if test="othersdeduct != null" >
+        #{othersdeduct,jdbcType=REAL},
+      </if>
+      <if test="totaldeduct != null" >
+        #{totaldeduct,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oa.pojo.SalaryExample" resultType="java.lang.Integer" >
+    select count(*) from salary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update salary
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.month != null" >
+        month = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.basicsalary != null" >
+        basicsalary = #{record.basicsalary,jdbcType=REAL},
+      </if>
+      <if test="record.fsalary != null" >
+        Fsalary = #{record.fsalary,jdbcType=REAL},
+      </if>
+      <if test="record.checkingdays != null" >
+        checkingdays = #{record.checkingdays,jdbcType=INTEGER},
+      </if>
+      <if test="record.trafficallowance != null" >
+        trafficallowance = #{record.trafficallowance,jdbcType=REAL},
+      </if>
+      <if test="record.otherallowance != null" >
+        otherallowance = #{record.otherallowance,jdbcType=REAL},
+      </if>
+      <if test="record.totalallowance != null" >
+        totalallowance = #{record.totalallowance,jdbcType=REAL},
+      </if>
+      <if test="record.endowmentinsurance != null" >
+        endowmentinsurance = #{record.endowmentinsurance,jdbcType=REAL},
+      </if>
+      <if test="record.medicalinsurance != null" >
+        medicalinsurance = #{record.medicalinsurance,jdbcType=REAL},
+      </if>
+      <if test="record.unemploymentinsurance != null" >
+        unemploymentinsurance = #{record.unemploymentinsurance,jdbcType=REAL},
+      </if>
+      <if test="record.employmentinjuryinsurance != null" >
+        employmentinjuryinsurance = #{record.employmentinjuryinsurance,jdbcType=REAL},
+      </if>
+      <if test="record.maternityinsurance != null" >
+        maternityinsurance = #{record.maternityinsurance,jdbcType=REAL},
+      </if>
+      <if test="record.housingfund != null" >
+        housingfund = #{record.housingfund,jdbcType=REAL},
+      </if>
+      <if test="record.othersdeduct != null" >
+        othersdeduct = #{record.othersdeduct,jdbcType=REAL},
+      </if>
+      <if test="record.totaldeduct != null" >
+        totaldeduct = #{record.totaldeduct,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update salary
+    set id = #{record.id,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      month = #{record.month,jdbcType=VARCHAR},
+      basicsalary = #{record.basicsalary,jdbcType=REAL},
+      Fsalary = #{record.fsalary,jdbcType=REAL},
+      checkingdays = #{record.checkingdays,jdbcType=INTEGER},
+      trafficallowance = #{record.trafficallowance,jdbcType=REAL},
+      otherallowance = #{record.otherallowance,jdbcType=REAL},
+      totalallowance = #{record.totalallowance,jdbcType=REAL},
+      endowmentinsurance = #{record.endowmentinsurance,jdbcType=REAL},
+      medicalinsurance = #{record.medicalinsurance,jdbcType=REAL},
+      unemploymentinsurance = #{record.unemploymentinsurance,jdbcType=REAL},
+      employmentinjuryinsurance = #{record.employmentinjuryinsurance,jdbcType=REAL},
+      maternityinsurance = #{record.maternityinsurance,jdbcType=REAL},
+      housingfund = #{record.housingfund,jdbcType=REAL},
+      othersdeduct = #{record.othersdeduct,jdbcType=REAL},
+      totaldeduct = #{record.totaldeduct,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oa.pojo.Salary" >
+    update salary
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsalary != null" >
+        basicsalary = #{basicsalary,jdbcType=REAL},
+      </if>
+      <if test="fsalary != null" >
+        Fsalary = #{fsalary,jdbcType=REAL},
+      </if>
+      <if test="checkingdays != null" >
+        checkingdays = #{checkingdays,jdbcType=INTEGER},
+      </if>
+      <if test="trafficallowance != null" >
+        trafficallowance = #{trafficallowance,jdbcType=REAL},
+      </if>
+      <if test="otherallowance != null" >
+        otherallowance = #{otherallowance,jdbcType=REAL},
+      </if>
+      <if test="totalallowance != null" >
+        totalallowance = #{totalallowance,jdbcType=REAL},
+      </if>
+      <if test="endowmentinsurance != null" >
+        endowmentinsurance = #{endowmentinsurance,jdbcType=REAL},
+      </if>
+      <if test="medicalinsurance != null" >
+        medicalinsurance = #{medicalinsurance,jdbcType=REAL},
+      </if>
+      <if test="unemploymentinsurance != null" >
+        unemploymentinsurance = #{unemploymentinsurance,jdbcType=REAL},
+      </if>
+      <if test="employmentinjuryinsurance != null" >
+        employmentinjuryinsurance = #{employmentinjuryinsurance,jdbcType=REAL},
+      </if>
+      <if test="maternityinsurance != null" >
+        maternityinsurance = #{maternityinsurance,jdbcType=REAL},
+      </if>
+      <if test="housingfund != null" >
+        housingfund = #{housingfund,jdbcType=REAL},
+      </if>
+      <if test="othersdeduct != null" >
+        othersdeduct = #{othersdeduct,jdbcType=REAL},
+      </if>
+      <if test="totaldeduct != null" >
+        totaldeduct = #{totaldeduct,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oa.pojo.Salary" >
+    update salary
+    set userid = #{userid,jdbcType=INTEGER},
+      month = #{month,jdbcType=VARCHAR},
+      basicsalary = #{basicsalary,jdbcType=REAL},
+      Fsalary = #{fsalary,jdbcType=REAL},
+      checkingdays = #{checkingdays,jdbcType=INTEGER},
+      trafficallowance = #{trafficallowance,jdbcType=REAL},
+      otherallowance = #{otherallowance,jdbcType=REAL},
+      totalallowance = #{totalallowance,jdbcType=REAL},
+      endowmentinsurance = #{endowmentinsurance,jdbcType=REAL},
+      medicalinsurance = #{medicalinsurance,jdbcType=REAL},
+      unemploymentinsurance = #{unemploymentinsurance,jdbcType=REAL},
+      employmentinjuryinsurance = #{employmentinjuryinsurance,jdbcType=REAL},
+      maternityinsurance = #{maternityinsurance,jdbcType=REAL},
+      housingfund = #{housingfund,jdbcType=REAL},
+      othersdeduct = #{othersdeduct,jdbcType=REAL},
+      totaldeduct = #{totaldeduct,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

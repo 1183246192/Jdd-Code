@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oa.mapper.AnnualvacationMapper" >
+  <resultMap id="BaseResultMap" type="com.oa.pojo.Annualvacation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="have" property="have" jdbcType="INTEGER" />
+    <result column="used" property="used" jdbcType="INTEGER" />
+    <result column="remain" property="remain" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+    <result column="stoptime" property="stoptime" jdbcType="DATE" />
+    <result column="previousremain" property="previousremain" jdbcType="INTEGER" />
+    <result column="previousstoptime" property="previousstoptime" jdbcType="DATE" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userid, year, have, used, remain, starttime, stoptime, previousremain, previousstoptime, 
+    total
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.oa.pojo.AnnualvacationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from annualvacation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from annualvacation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from annualvacation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oa.pojo.AnnualvacationExample" >
+    delete from annualvacation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oa.pojo.Annualvacation" >
+    insert into annualvacation (id, userid, year, 
+      have, used, remain, 
+      starttime, stoptime, previousremain, 
+      previousstoptime, total)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, 
+      #{have,jdbcType=INTEGER}, #{used,jdbcType=INTEGER}, #{remain,jdbcType=INTEGER}, 
+      #{starttime,jdbcType=DATE}, #{stoptime,jdbcType=DATE}, #{previousremain,jdbcType=INTEGER}, 
+      #{previousstoptime,jdbcType=DATE}, #{total,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oa.pojo.Annualvacation" >
+    insert into annualvacation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="have != null" >
+        have,
+      </if>
+      <if test="used != null" >
+        used,
+      </if>
+      <if test="remain != null" >
+        remain,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="stoptime != null" >
+        stoptime,
+      </if>
+      <if test="previousremain != null" >
+        previousremain,
+      </if>
+      <if test="previousstoptime != null" >
+        previousstoptime,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="have != null" >
+        #{have,jdbcType=INTEGER},
+      </if>
+      <if test="used != null" >
+        #{used,jdbcType=INTEGER},
+      </if>
+      <if test="remain != null" >
+        #{remain,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="stoptime != null" >
+        #{stoptime,jdbcType=DATE},
+      </if>
+      <if test="previousremain != null" >
+        #{previousremain,jdbcType=INTEGER},
+      </if>
+      <if test="previousstoptime != null" >
+        #{previousstoptime,jdbcType=DATE},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oa.pojo.AnnualvacationExample" resultType="java.lang.Integer" >
+    select count(*) from annualvacation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update annualvacation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.year != null" >
+        year = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.have != null" >
+        have = #{record.have,jdbcType=INTEGER},
+      </if>
+      <if test="record.used != null" >
+        used = #{record.used,jdbcType=INTEGER},
+      </if>
+      <if test="record.remain != null" >
+        remain = #{record.remain,jdbcType=INTEGER},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=DATE},
+      </if>
+      <if test="record.stoptime != null" >
+        stoptime = #{record.stoptime,jdbcType=DATE},
+      </if>
+      <if test="record.previousremain != null" >
+        previousremain = #{record.previousremain,jdbcType=INTEGER},
+      </if>
+      <if test="record.previousstoptime != null" >
+        previousstoptime = #{record.previousstoptime,jdbcType=DATE},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update annualvacation
+    set id = #{record.id,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      year = #{record.year,jdbcType=VARCHAR},
+      have = #{record.have,jdbcType=INTEGER},
+      used = #{record.used,jdbcType=INTEGER},
+      remain = #{record.remain,jdbcType=INTEGER},
+      starttime = #{record.starttime,jdbcType=DATE},
+      stoptime = #{record.stoptime,jdbcType=DATE},
+      previousremain = #{record.previousremain,jdbcType=INTEGER},
+      previousstoptime = #{record.previousstoptime,jdbcType=DATE},
+      total = #{record.total,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oa.pojo.Annualvacation" >
+    update annualvacation
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="have != null" >
+        have = #{have,jdbcType=INTEGER},
+      </if>
+      <if test="used != null" >
+        used = #{used,jdbcType=INTEGER},
+      </if>
+      <if test="remain != null" >
+        remain = #{remain,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="stoptime != null" >
+        stoptime = #{stoptime,jdbcType=DATE},
+      </if>
+      <if test="previousremain != null" >
+        previousremain = #{previousremain,jdbcType=INTEGER},
+      </if>
+      <if test="previousstoptime != null" >
+        previousstoptime = #{previousstoptime,jdbcType=DATE},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oa.pojo.Annualvacation" >
+    update annualvacation
+    set userid = #{userid,jdbcType=INTEGER},
+      year = #{year,jdbcType=VARCHAR},
+      have = #{have,jdbcType=INTEGER},
+      used = #{used,jdbcType=INTEGER},
+      remain = #{remain,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=DATE},
+      stoptime = #{stoptime,jdbcType=DATE},
+      previousremain = #{previousremain,jdbcType=INTEGER},
+      previousstoptime = #{previousstoptime,jdbcType=DATE},
+      total = #{total,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
