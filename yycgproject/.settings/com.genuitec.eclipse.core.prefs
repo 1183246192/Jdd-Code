@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=src/main/webapp/js/jqueryvalidator,src/main/webapp/menu.json,src/main/webapp/WEB-INF/jsp/base/tag.jsp,src/main/webapp/js/formvalidator
+validator.Unchecked=

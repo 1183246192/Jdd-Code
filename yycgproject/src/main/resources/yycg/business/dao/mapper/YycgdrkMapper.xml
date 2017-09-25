@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.business.dao.mapper.YycgdrkMapper" >
+  <resultMap id="BaseResultMap" type="yycg.business.pojo.po.Yycgdrk" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="yycgdid" property="yycgdid" jdbcType="VARCHAR" />
+    <result column="ypxxid" property="ypxxid" jdbcType="VARCHAR" />
+    <result column="vchar1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="vchar2" property="vchar2" jdbcType="VARCHAR" />
+    <result column="vchar3" property="vchar3" jdbcType="VARCHAR" />
+    <result column="vchar4" property="vchar4" jdbcType="VARCHAR" />
+    <result column="vchar5" property="vchar5" jdbcType="VARCHAR" />
+    <result column="rkl" property="rkl" jdbcType="INTEGER" />
+    <result column="cgzt" property="cgzt" jdbcType="CHAR" />
+    <result column="rkje" property="rkje" jdbcType="REAL" />
+    <result column="rkdh" property="rkdh" jdbcType="VARCHAR" />
+    <result column="ypph" property="ypph" jdbcType="VARCHAR" />
+    <result column="ypyxq" property="ypyxq" jdbcType="REAL" />
+    <result column="rktime" property="rktime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, yycgdid, ypxxid, vchar1, vchar2, vchar3, vchar4, vchar5, rkl, cgzt, rkje, rkdh, 
+    ypph, ypyxq, rktime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.business.pojo.po.YycgdrkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yycgdrk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yycgdrk
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yycgdrk
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="yycg.business.pojo.po.YycgdrkExample" >
+    delete from yycgdrk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.business.pojo.po.Yycgdrk" >
+    insert into yycgdrk (id, yycgdid, ypxxid, 
+      vchar1, vchar2, vchar3, 
+      vchar4, vchar5, rkl, 
+      cgzt, rkje, rkdh, ypph, 
+      ypyxq, rktime)
+    values (#{id,jdbcType=VARCHAR}, #{yycgdid,jdbcType=VARCHAR}, #{ypxxid,jdbcType=VARCHAR}, 
+      #{vchar1,jdbcType=VARCHAR}, #{vchar2,jdbcType=VARCHAR}, #{vchar3,jdbcType=VARCHAR}, 
+      #{vchar4,jdbcType=VARCHAR}, #{vchar5,jdbcType=VARCHAR}, #{rkl,jdbcType=INTEGER}, 
+      #{cgzt,jdbcType=CHAR}, #{rkje,jdbcType=REAL}, #{rkdh,jdbcType=VARCHAR}, #{ypph,jdbcType=VARCHAR}, 
+      #{ypyxq,jdbcType=REAL}, #{rktime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.business.pojo.po.Yycgdrk" >
+    insert into yycgdrk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="yycgdid != null" >
+        yycgdid,
+      </if>
+      <if test="ypxxid != null" >
+        ypxxid,
+      </if>
+      <if test="vchar1 != null" >
+        vchar1,
+      </if>
+      <if test="vchar2 != null" >
+        vchar2,
+      </if>
+      <if test="vchar3 != null" >
+        vchar3,
+      </if>
+      <if test="vchar4 != null" >
+        vchar4,
+      </if>
+      <if test="vchar5 != null" >
+        vchar5,
+      </if>
+      <if test="rkl != null" >
+        rkl,
+      </if>
+      <if test="cgzt != null" >
+        cgzt,
+      </if>
+      <if test="rkje != null" >
+        rkje,
+      </if>
+      <if test="rkdh != null" >
+        rkdh,
+      </if>
+      <if test="ypph != null" >
+        ypph,
+      </if>
+      <if test="ypyxq != null" >
+        ypyxq,
+      </if>
+      <if test="rktime != null" >
+        rktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="yycgdid != null" >
+        #{yycgdid,jdbcType=VARCHAR},
+      </if>
+      <if test="ypxxid != null" >
+        #{ypxxid,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar4 != null" >
+        #{vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar5 != null" >
+        #{vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="rkl != null" >
+        #{rkl,jdbcType=INTEGER},
+      </if>
+      <if test="cgzt != null" >
+        #{cgzt,jdbcType=CHAR},
+      </if>
+      <if test="rkje != null" >
+        #{rkje,jdbcType=REAL},
+      </if>
+      <if test="rkdh != null" >
+        #{rkdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ypph != null" >
+        #{ypph,jdbcType=VARCHAR},
+      </if>
+      <if test="ypyxq != null" >
+        #{ypyxq,jdbcType=REAL},
+      </if>
+      <if test="rktime != null" >
+        #{rktime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.business.pojo.po.YycgdrkExample" resultType="java.lang.Integer" >
+    select count(*) from yycgdrk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yycgdrk
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yycgdid != null" >
+        yycgdid = #{record.yycgdid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ypxxid != null" >
+        ypxxid = #{record.ypxxid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        vchar1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        vchar2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar3 != null" >
+        vchar3 = #{record.vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar4 != null" >
+        vchar4 = #{record.vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar5 != null" >
+        vchar5 = #{record.vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rkl != null" >
+        rkl = #{record.rkl,jdbcType=INTEGER},
+      </if>
+      <if test="record.cgzt != null" >
+        cgzt = #{record.cgzt,jdbcType=CHAR},
+      </if>
+      <if test="record.rkje != null" >
+        rkje = #{record.rkje,jdbcType=REAL},
+      </if>
+      <if test="record.rkdh != null" >
+        rkdh = #{record.rkdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ypph != null" >
+        ypph = #{record.ypph,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ypyxq != null" >
+        ypyxq = #{record.ypyxq,jdbcType=REAL},
+      </if>
+      <if test="record.rktime != null" >
+        rktime = #{record.rktime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yycgdrk
+    set id = #{record.id,jdbcType=VARCHAR},
+      yycgdid = #{record.yycgdid,jdbcType=VARCHAR},
+      ypxxid = #{record.ypxxid,jdbcType=VARCHAR},
+      vchar1 = #{record.vchar1,jdbcType=VARCHAR},
+      vchar2 = #{record.vchar2,jdbcType=VARCHAR},
+      vchar3 = #{record.vchar3,jdbcType=VARCHAR},
+      vchar4 = #{record.vchar4,jdbcType=VARCHAR},
+      vchar5 = #{record.vchar5,jdbcType=VARCHAR},
+      rkl = #{record.rkl,jdbcType=INTEGER},
+      cgzt = #{record.cgzt,jdbcType=CHAR},
+      rkje = #{record.rkje,jdbcType=REAL},
+      rkdh = #{record.rkdh,jdbcType=VARCHAR},
+      ypph = #{record.ypph,jdbcType=VARCHAR},
+      ypyxq = #{record.ypyxq,jdbcType=REAL},
+      rktime = #{record.rktime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yycg.business.pojo.po.Yycgdrk" >
+    update yycgdrk
+    <set >
+      <if test="yycgdid != null" >
+        yycgdid = #{yycgdid,jdbcType=VARCHAR},
+      </if>
+      <if test="ypxxid != null" >
+        ypxxid = #{ypxxid,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        vchar1 = #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        vchar2 = #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        vchar3 = #{vchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar4 != null" >
+        vchar4 = #{vchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar5 != null" >
+        vchar5 = #{vchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="rkl != null" >
+        rkl = #{rkl,jdbcType=INTEGER},
+      </if>
+      <if test="cgzt != null" >
+        cgzt = #{cgzt,jdbcType=CHAR},
+      </if>
+      <if test="rkje != null" >
+        rkje = #{rkje,jdbcType=REAL},
+      </if>
+      <if test="rkdh != null" >
+        rkdh = #{rkdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ypph != null" >
+        ypph = #{ypph,jdbcType=VARCHAR},
+      </if>
+      <if test="ypyxq != null" >
+        ypyxq = #{ypyxq,jdbcType=REAL},
+      </if>
+      <if test="rktime != null" >
+        rktime = #{rktime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yycg.business.pojo.po.Yycgdrk" >
+    update yycgdrk
+    set yycgdid = #{yycgdid,jdbcType=VARCHAR},
+      ypxxid = #{ypxxid,jdbcType=VARCHAR},
+      vchar1 = #{vchar1,jdbcType=VARCHAR},
+      vchar2 = #{vchar2,jdbcType=VARCHAR},
+      vchar3 = #{vchar3,jdbcType=VARCHAR},
+      vchar4 = #{vchar4,jdbcType=VARCHAR},
+      vchar5 = #{vchar5,jdbcType=VARCHAR},
+      rkl = #{rkl,jdbcType=INTEGER},
+      cgzt = #{cgzt,jdbcType=CHAR},
+      rkje = #{rkje,jdbcType=REAL},
+      rkdh = #{rkdh,jdbcType=VARCHAR},
+      ypph = #{ypph,jdbcType=VARCHAR},
+      ypyxq = #{ypyxq,jdbcType=REAL},
+      rktime = #{rktime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

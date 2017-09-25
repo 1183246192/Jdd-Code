@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.business.dao.mapper.GysypmlControlMapper" >
+  <resultMap id="BaseResultMap" type="yycg.business.pojo.po.GysypmlControl" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="ypxxid" property="ypxxid" jdbcType="VARCHAR" />
+    <result column="usergysid" property="usergysid" jdbcType="VARCHAR" />
+    <result column="control" property="control" jdbcType="CHAR" />
+    <result column="advice" property="advice" jdbcType="VARCHAR" />
+    <result column="vchar1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="vchar2" property="vchar2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, ypxxid, usergysid, control, advice, vchar1, vchar2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="yycg.business.pojo.po.GysypmlControlExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gysypml_control
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from gysypml_control
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from gysypml_control
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="yycg.business.pojo.po.GysypmlControlExample" >
+    delete from gysypml_control
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="yycg.business.pojo.po.GysypmlControl" >
+    insert into gysypml_control (id, ypxxid, usergysid, 
+      control, advice, vchar1, 
+      vchar2)
+    values (#{id,jdbcType=VARCHAR}, #{ypxxid,jdbcType=VARCHAR}, #{usergysid,jdbcType=VARCHAR}, 
+      #{control,jdbcType=CHAR}, #{advice,jdbcType=VARCHAR}, #{vchar1,jdbcType=VARCHAR}, 
+      #{vchar2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="yycg.business.pojo.po.GysypmlControl" >
+    insert into gysypml_control
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ypxxid != null" >
+        ypxxid,
+      </if>
+      <if test="usergysid != null" >
+        usergysid,
+      </if>
+      <if test="control != null" >
+        control,
+      </if>
+      <if test="advice != null" >
+        advice,
+      </if>
+      <if test="vchar1 != null" >
+        vchar1,
+      </if>
+      <if test="vchar2 != null" >
+        vchar2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ypxxid != null" >
+        #{ypxxid,jdbcType=VARCHAR},
+      </if>
+      <if test="usergysid != null" >
+        #{usergysid,jdbcType=VARCHAR},
+      </if>
+      <if test="control != null" >
+        #{control,jdbcType=CHAR},
+      </if>
+      <if test="advice != null" >
+        #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="yycg.business.pojo.po.GysypmlControlExample" resultType="java.lang.Integer" >
+    select count(*) from gysypml_control
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gysypml_control
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ypxxid != null" >
+        ypxxid = #{record.ypxxid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usergysid != null" >
+        usergysid = #{record.usergysid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.control != null" >
+        control = #{record.control,jdbcType=CHAR},
+      </if>
+      <if test="record.advice != null" >
+        advice = #{record.advice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        vchar1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        vchar2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gysypml_control
+    set id = #{record.id,jdbcType=VARCHAR},
+      ypxxid = #{record.ypxxid,jdbcType=VARCHAR},
+      usergysid = #{record.usergysid,jdbcType=VARCHAR},
+      control = #{record.control,jdbcType=CHAR},
+      advice = #{record.advice,jdbcType=VARCHAR},
+      vchar1 = #{record.vchar1,jdbcType=VARCHAR},
+      vchar2 = #{record.vchar2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="yycg.business.pojo.po.GysypmlControl" >
+    update gysypml_control
+    <set >
+      <if test="ypxxid != null" >
+        ypxxid = #{ypxxid,jdbcType=VARCHAR},
+      </if>
+      <if test="usergysid != null" >
+        usergysid = #{usergysid,jdbcType=VARCHAR},
+      </if>
+      <if test="control != null" >
+        control = #{control,jdbcType=CHAR},
+      </if>
+      <if test="advice != null" >
+        advice = #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar1 != null" >
+        vchar1 = #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        vchar2 = #{vchar2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yycg.business.pojo.po.GysypmlControl" >
+    update gysypml_control
+    set ypxxid = #{ypxxid,jdbcType=VARCHAR},
+      usergysid = #{usergysid,jdbcType=VARCHAR},
+      control = #{control,jdbcType=CHAR},
+      advice = #{advice,jdbcType=VARCHAR},
+      vchar1 = #{vchar1,jdbcType=VARCHAR},
+      vchar2 = #{vchar2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
