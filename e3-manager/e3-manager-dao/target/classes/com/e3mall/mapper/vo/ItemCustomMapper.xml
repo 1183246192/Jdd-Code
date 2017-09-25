@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.e3mall.mapper.vo.ItemCustomMapper">
+  
+  <!-- sql片段 -->
+	<!-- 用户查询条件 通常情况，为了提高 sql片段可重用性，按单表创建sql片段 -->
+	<sql id="query_item_where">
+		<if test="itemCustom!=null">
+			<if test="itemCustom.protitle!=null and itemCustom.protitle!=''">
+				and title like '%${itemCustom.protitle}%'
+			</if>
+			<if test="itemCustom.propoint!=null and itemCustom.propoint!=''">
+				and sell_point like '%${itemCustom.propoint}%'
+			</if>
+			<if test="itemCustom.proprice1!=null and itemCustom.proprice1!='' and itemCustom.proprice2!=null and itemCustom.proprice2!=''">
+				and price BETWEEN (#{itemCustom.proprice1}*100) AND (#{itemCustom.proprice2}*100)
+			</if>
+		</if>
+	</sql>
+
+	<!-- 商品查询 -->
+	<select id="findItemList" parameterType="com.e3mall.pojo.vo.ItemQueryVo"
+		resultType="com.e3mall.pojo.TbItem">
+		SELECT * 
+		FROM `tb_item` 
+		<where>
+			<include refid="query_item_where" />
+		</where>
+		limit ${pageQuery.PageQuery_start},${pageQuery.PageQuery_end}
+		
+	</select>
+	
+	<!-- 查询列表的总记录数 -->
+	<select id="findItemCount" parameterType="com.e3mall.pojo.vo.ItemQueryVo"
+	resultType="int">
+	
+	select count(*)
+ 		FROM `tb_item` 
+		<where>
+			<include refid="query_item_where" />
+		</where>
+	
+	</select>
+
+</mapper>
